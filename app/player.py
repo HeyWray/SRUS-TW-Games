@@ -12,3 +12,4 @@ class Player():
 
     def __str__(self):
         return f"Player called {self.player_name()} with ID of {self.id()}"
+    #admfkadnojkasfnkgjsnkjsANgkijsn
