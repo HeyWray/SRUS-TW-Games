@@ -1,3 +1,6 @@
+"""
+The identity of the player
+"""
 
 class Player():
     def __init__(self, uid: str, player_name: str):

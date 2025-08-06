@@ -1,16 +1,18 @@
+"""
+Holds player information, and position
+for the double linked player_list
+"""
 
-"""This holds all the player information for
-the double linked player_list"""
 class PlayerNode:
     def __init__(self, player):
         self._player = player
         self._next = None
-        self._prev = None
+        self._pre = None
 
     def __str__(self):
         return f"Player Node for {self.player}"
 
-    # <editor-fold desc="Setters and Getters">
+    # <editor-fold desc="Properties and Setters">
     @property
     def key(self):
         return self.player.key
@@ -32,11 +34,11 @@ class PlayerNode:
         self._next = set_next
 
     @property
-    def prev(self):
+    def pre(self):
         return self._prev
 
-    @prev.setter
-    def prev(self, set_prev):
+    @pre.setter
+    def pre(self, set_prev):
         self._prev = set_prev
     # </editor-fold>
 
