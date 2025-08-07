@@ -8,9 +8,11 @@ from app import player_list
 list = player_list.PlayerList()
 
 print("Is the list currently empty?", list.is_empty, "\n")
-print("Adding 4 players \n")
+print("Adding some players \n")
 list.push_to_front(player_list.new_player("001", "Chibi"))
 list.push_to_front(player_list.new_player("002", "Zen"))
+list.remove_from_front()
+list.remove_from_end()
 list.push_to_end(player_list.new_player("003", "Haruka"))
 list.push_to_end(player_list.new_player())
 list.push_to_front(player_list.new_player())

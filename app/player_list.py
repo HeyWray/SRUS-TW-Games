@@ -18,8 +18,7 @@ class PlayerList(list):
         return f"Double link List of Players of size {self.size}"
 
 
-
-    #Adds a new player at the BEGINING of the list
+    #Adds a new player at the START of the list
     #if the list is empty will just make a list of 1
     def push_to_front(self, player : PlayerNode):
         if type(player) is not PlayerNode:
@@ -30,8 +29,8 @@ class PlayerList(list):
             self.end = player
             return
         self.root.pre = player
-        self.root.pre.next = self.root
-        self.root = self.root.pre
+        player.next = self.root
+        self.root = player
 
     # Adds a new player at the END of the list
     # if the list is empty will just make a list of 1
@@ -44,8 +43,30 @@ class PlayerList(list):
             self.end = player
             return
         self.end.next = player
-        self.end.next.pre = self.end
-        self.end = self.end.next
+        player.pre = self.end
+        self.end = player
+
+    #Removes whoever the front player is
+    def remove_from_front(self):
+        if self.root is None:
+            return
+        if self.root == self.end:
+            self.root = None
+            self.end = None
+            return
+        self.root = self.root.next
+        self.root.pre = None
+
+    #Removes whoever the end player is
+    def remove_from_end(self):
+        if self.end is None:
+            return
+        if self.root == self.end:
+            self.root = None
+            self.end = None
+            return
+        self.end = self.end.pre
+        self.end.next = None
 
     # <editor-fold desc="Properties and Setters">
 
@@ -113,5 +134,4 @@ def new_player(uid : str | None = None,
     if name is None:
         new_name = random.choice(
             list(["Nagz","Ray","Bluto","Heavenly"]))
-        print("Randomized the name to ", new_name)
     return PlayerNode(Player(new_uid, new_name))
