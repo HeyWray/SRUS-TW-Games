@@ -35,10 +35,10 @@ class PlayerNode:
 
     @property
     def pre(self):
-        return self._prev
+        return self._pre
 
     @pre.setter
-    def pre(self, set_prev):
-        self._prev = set_prev
+    def pre(self, set_pre):
+        self._pre = set_pre
     # </editor-fold>
 
