@@ -7,11 +7,19 @@ class Player():
         self._uid = uid
         self._player_name = player_name
 
+    def __str__(self):
+        return f"Player called {self.player_name} with ID of {self.uid}"
+
+    # <editor-fold desc="Properties and Setters">
+    @property
     def uid(self) -> str:
         return self._uid
 
+    @property
     def player_name(self) -> str:
         return self._player_name
 
-    def __str__(self):
-        return f"Player called {self.player_name()} with ID of {self.uid()}"
+    @property
+    def name(self) -> str:
+        return self.player_name
+    # </editor-fold>

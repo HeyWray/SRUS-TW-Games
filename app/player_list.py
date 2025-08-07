@@ -1,8 +1,11 @@
 """
 Holds the list of all players
 """
+from __future__ import annotations
+import random
 
 from app.player_node import PlayerNode
+from app.player import Player
 
 #Double linked list
 class PlayerList(list):
@@ -16,19 +19,33 @@ class PlayerList(list):
 
 
 
-    #Adds a new player at the head of the list
+    #Adds a new player at the BEGINING of the list
     #if the list is empty will just make a list of 1
-    def push(self, player):
+    def push_to_front(self, player : PlayerNode):
+        if type(player) is not PlayerNode:
+            raise ValueError("Error: You need to pass a PlayerNode. "
+                             "See new_player in app.player_list")
         if self.root is None:
             self.root = player
             self.end = player
             return
-        new_player = PlayerNode(player)
-        self.root.pre = new_player
-        new_player.next = self.root
-        self.root = new_player
+        self.root.pre = player
+        self.root.pre.next = self.root
+        self.root = self.root.pre
 
-
+    # Adds a new player at the END of the list
+    # if the list is empty will just make a list of 1
+    def push_to_end(self, player : PlayerNode):
+        if type(player) is not PlayerNode:
+            raise ValueError("Error: You need to pass a PlayerNode. "
+                             "See new_player in app.player_list")
+        if self.end is None:
+            self.root = player
+            self.end = player
+            return
+        self.end.next = player
+        self.end.next.pre = self.end
+        self.end = self.end.next
 
     # <editor-fold desc="Properties and Setters">
 
@@ -51,6 +68,19 @@ class PlayerList(list):
             count += 1
         return count
 
+    #Lists out the player names in order
+    @property
+    def contents(self) -> str:
+        contents = "The list of players contains... "
+        link = self.root
+        while link is not None:
+            contents += link.player.name
+            if link.next is None:
+                break
+            contents += ", "
+            link = link.next
+        return contents
+
     #Begining of the list
     @property
     def root(self):
@@ -69,3 +99,19 @@ class PlayerList(list):
     def end(self, value):
         self._end = value
     # </editor-fold>
+
+
+#Static. Handles creating a new player. If no name or uid
+#is specified then creates a random name and uid
+def new_player(uid : str | None = None,
+               name : str | None = None) -> PlayerNode:
+    new_uid = uid
+    new_name = name
+    if uid is None:
+        new_uid = str(random.randrange(
+            100,1000))
+    if name is None:
+        new_name = random.choice(
+            list(["Nagz","Ray","Bluto","Heavenly"]))
+        print("Randomized the name to ", new_name)
+    return PlayerNode(Player(new_uid, new_name))
