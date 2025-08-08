@@ -3,6 +3,7 @@ Holds the list of all players
 """
 from __future__ import annotations
 import random
+from tkinter import BooleanVar
 
 from app.player_node import PlayerNode
 from app.player import Player
@@ -100,6 +101,26 @@ class PlayerList(list):
         check_player.pre.next = check_player.next
         check_player.next.pre = check_player.pre
 
+    # Lists out the player names in order
+    def display(self, forward=True):
+        display = "The list of players from front to back is:\n   "
+        link = self.root
+        if not forward:
+            display = "The list of players from back to front is:\n   "
+            link = self.end
+        while link is not None:
+            display += link.player.__str__()
+            if link.next is None and forward:
+                break
+            elif link.pre is None and not forward:
+                break
+            display += "\n   "
+            if forward:
+                link = link.next
+            else:
+                link = link.pre
+        print(display)
+
     # <editor-fold desc="Properties and Setters">
 
     # is the list empty?
@@ -121,20 +142,7 @@ class PlayerList(list):
             count += 1
         return count
 
-    # Lists out the player names in order
-    @property
-    def contents(self) -> str:
-        contents = "The list of players contains... "
-        link = self.root
-        while link is not None:
-            contents += link.player.name
-            if link.next is None:
-                break
-            contents += ", "
-            link = link.next
-        return contents
-
-    # Begining of the list
+    # Start of the list
     @property
     def root(self):
         return self._root
