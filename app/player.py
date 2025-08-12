@@ -24,3 +24,16 @@ class Player():
     def name(self) -> str:
         return self.player_name
     # </editor-fold>
+
+    @classmethod
+    # Static. Handles creating a new player. If no name or uid
+    # is specified then creates a random name and uid
+    def from_random(cls):
+        import random
+
+        uid = str(random.randrange(
+                100, 1000))
+        name = random.choice(
+                ["Nagz", "Ray", "Bluto", "Heavenly"])
+
+        return cls(uid, name)

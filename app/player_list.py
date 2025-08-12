@@ -2,11 +2,8 @@
 Holds the list of all players
 """
 from __future__ import annotations
-import random
-from tkinter import BooleanVar
 
-from app.player_node import PlayerNode
-from app.player import Player
+from player_node import PlayerNode
 
 
 # Double linked list
@@ -161,17 +158,3 @@ class PlayerList(list):
         self._end = value
     # </editor-fold>
 
-
-# Static. Handles creating a new player. If no name or uid
-# is specified then creates a random name and uid
-def new_player(uid: str | None = None,
-               name: str | None = None) -> PlayerNode:
-    new_uid = uid
-    new_name = name
-    if uid is None:
-        new_uid = str(random.randrange(
-            100, 1000))
-    if name is None:
-        new_name = random.choice(
-            list(["Nagz", "Ray", "Bluto", "Heavenly"]))
-    return PlayerNode(Player(new_uid, new_name))

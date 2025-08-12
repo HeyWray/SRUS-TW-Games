@@ -2,6 +2,7 @@
 Holds the player and where they are in
 position to the double linked player_list
 """
+from __future__ import annotations
 
 class PlayerNode:
     def __init__(self, player):
