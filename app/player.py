@@ -28,7 +28,7 @@ class Player():
     @classmethod
     # Static. Handles creating a new player. If no name or uid
     # is specified then creates a random name and uid
-    def from_random(cls):
+    def create_random_player(cls):
         import random
 
         uid = str(random.randrange(

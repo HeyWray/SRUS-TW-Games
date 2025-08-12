@@ -6,7 +6,7 @@ from __future__ import annotations
 
 class PlayerNode:
     def __init__(self, player):
-        self._player = player #app>player
+        self._player = player #player
         self._next = None #the next player
         self._pre = None #the previous player
 

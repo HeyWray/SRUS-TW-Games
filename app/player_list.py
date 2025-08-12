@@ -6,7 +6,7 @@ from __future__ import annotations
 from player_node import PlayerNode
 
 
-# Double linked list
+# Player linked list
 class PlayerList(list):
     def __init__(self):
         self._root = None
@@ -14,7 +14,10 @@ class PlayerList(list):
         self._end = None
 
     def __str__(self):
-        return f"Double link List of Players of size {self.size}"
+        return f"Player link List of Players of size {self.size}"
+
+    def __repr__(self):
+        return f"Player link List of Players of size {self.size!r}"
 
     # Adds a new player at the START of the list
     # if the list is empty will just make a list of 1
@@ -46,8 +49,8 @@ class PlayerList(list):
 
     # Removes whoever the front player is
     def remove_from_front(self):
-        if self.root is None:
-            return
+        if self.size == 0:
+            raise ValueError(("Error: The list is empty. Size is ", self.size), self)
         if self.root == self.end:
             self.root = None
             self.end = None
@@ -57,8 +60,8 @@ class PlayerList(list):
 
     # Removes whoever the end player is
     def remove_from_end(self):
-        if self.end is None:
-            return
+        if self.size == 0:
+            raise ValueError(("Error: The list is empty. Size is ", self.size), self)
         if self.root == self.end:
             self.root = None
             self.end = None
@@ -68,8 +71,8 @@ class PlayerList(list):
 
     #Removes a player based on a uid
     def remove_uid(self, uid: str):
-        if self.root is None:
-            return
+        if self.size == 0:
+            raise ValueError(("Error: The list is empty. Size is ", self.size), self)
         check_player = self.root
         while check_player.player.uid != uid:
             check_player = check_player.next
@@ -99,7 +102,7 @@ class PlayerList(list):
         check_player.next.pre = check_player.pre
 
     # Lists out the player names in order
-    def display(self, forward=True):
+    def display(self, forward=True) -> str:
         display = "The list of players from front to back is:\n   "
         link = self.root
         if not forward:
@@ -116,7 +119,7 @@ class PlayerList(list):
                 link = link.next
             else:
                 link = link.pre
-        print(display)
+        return display
 
     # <editor-fold desc="Properties and Setters">
 
@@ -156,5 +159,10 @@ class PlayerList(list):
     @end.setter
     def end(self, value):
         self._end = value
+
+    @property
+    def check_has_a_player_node(self):
+        if self.size == 0:
+            raise ValueError(("Error: The list is empty. Size is ", self.size), self)
     # </editor-fold>
 
