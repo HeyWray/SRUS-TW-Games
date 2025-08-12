@@ -7,7 +7,7 @@ from player_node import PlayerNode
 
 
 # Player linked list
-class PlayerList(list):
+class PlayerList:
     def __init__(self):
         self._root = None
         self._current = None
@@ -22,10 +22,10 @@ class PlayerList(list):
     # Adds a new player at the START of the list
     # if the list is empty will just make a list of 1
     def push_to_front(self, player: PlayerNode):
-        if type(player) is not PlayerNode:
+        if not isinstance(player, PlayerNode):
             raise ValueError("Error: You need to pass a PlayerNode. "
                              "See new_player in app.player_list")
-        if self.root is None:
+        if self.is_empty:
             self.root = player
             self.end = player
             return
@@ -39,7 +39,7 @@ class PlayerList(list):
         if type(player) is not PlayerNode:
             raise ValueError("Error: You need to pass a PlayerNode. "
                              "See new_player in app.player_list")
-        if self.end is None:
+        if self.is_empty:
             self.root = player
             self.end = player
             return
@@ -49,7 +49,7 @@ class PlayerList(list):
 
     # Removes whoever the front player is
     def remove_from_front(self):
-        if self.size == 0:
+        if self.is_empty:
             raise ValueError(("Error: The list is empty. Size is ", self.size), self)
         if self.root == self.end:
             self.root = None
@@ -70,7 +70,7 @@ class PlayerList(list):
         self.end.next = None
 
     #Removes a player based on a uid
-    def remove_uid(self, uid: str):
+    def remove_player_by_uid(self, uid: str):
         if self.size == 0:
             raise ValueError(("Error: The list is empty. Size is ", self.size), self)
         check_player = self.root
@@ -86,16 +86,6 @@ class PlayerList(list):
             self.root = None
             self.end = None
             return
-        #is the link at the start or the end?
-        if (check_player == self.root or
-            check_player == self.end):
-            if check_player == self.root:
-                self.root = check_player.next
-                self.root.pre = None
-            if check_player == self.end:
-                self.end = check_player.pre
-                check_player.next = None
-            return
 
         #else it is somewhere through the chain
         check_player.pre.next = check_player.next
@@ -109,7 +99,7 @@ class PlayerList(list):
             display = "The list of players from back to front is:\n   "
             link = self.end
         while link is not None:
-            display += link.player.__str__()
+            display += str(link.player)
             if link.next is None and forward:
                 break
             elif link.pre is None and not forward:
@@ -126,9 +116,7 @@ class PlayerList(list):
     # is the list empty?
     @property
     def is_empty(self):
-        if self.root is None:
-            return True
-        return False
+        return self.root is None
 
     # How big the list is
     @property
