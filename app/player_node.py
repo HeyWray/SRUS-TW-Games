@@ -25,23 +25,23 @@ class PlayerNode:
         return self._player
 
     @player.setter
-    def player(self, set):
-        self._player = set
+    def player(self, set_to):
+        self._player = set_to
 
     @property
     def next(self):
         return self._next
 
     @next.setter
-    def next(self, set):
-        self._next = set
+    def next(self, set_to):
+        self._next = set_to
 
     @property
     def pre(self):
         return self._pre
 
     @pre.setter
-    def pre(self, set):
-        self._pre = set
+    def pre(self, set_to):
+        self._pre = set_to
     # </editor-fold>
 
