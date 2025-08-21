@@ -9,7 +9,7 @@ from player_node import PlayerNode
 # Player linked list
 class PlayerList:
     def __init__(self):
-        self._root = None
+        self._front = None
         self._current = None
         self._end = None
 
@@ -26,12 +26,12 @@ class PlayerList:
             raise ValueError("Error: You need to pass a PlayerNode. "
                              "See new_player in app.player_list")
         if self.is_empty:
-            self.root = player
+            self.front = player
             self.end = player
             return
-        self.root.pre = player
-        player.next = self.root
-        self.root = player
+        self.front.pre = player
+        player.next = self.front
+        self.front = player
 
     # Adds a new player at the END of the list
     # if the list is empty will just make a list of 1
@@ -40,7 +40,7 @@ class PlayerList:
             raise ValueError("Error: You need to pass a PlayerNode. "
                              "See new_player in app.player_list")
         if self.is_empty:
-            self.root = player
+            self.front = player
             self.end = player
             return
         self.end.next = player
@@ -51,19 +51,19 @@ class PlayerList:
     def remove_from_front(self):
         if self.is_empty:
             raise ValueError(("Error: The list is empty. Size is ", self.size), self)
-        if self.root == self.end:
-            self.root = None
+        if self.front == self.end:
+            self.front = None
             self.end = None
             return
-        self.root = self.root.next
-        self.root.pre = None
+        self.front = self.front.next
+        self.front.pre = None
 
     # Removes whoever the end player is
     def remove_from_end(self):
         if self.size == 0:
             raise ValueError(("Error: The list is empty. Size is ", self.size), self)
-        if self.root == self.end:
-            self.root = None
+        if self.front == self.end:
+            self.front = None
             self.end = None
             return
         self.end = self.end.pre
@@ -73,7 +73,7 @@ class PlayerList:
     def remove_player_by_uid(self, uid: str):
         if self.size == 0:
             raise ValueError(("Error: The list is empty. Size is ", self.size), self)
-        check_player = self.root
+        check_player = self.front
         while check_player.player.uid != uid:
             check_player = check_player.next
             if check_player is None:
@@ -83,7 +83,7 @@ class PlayerList:
 
         #is it the only one in the link?
         if self.size <= 1:
-            self.root = None
+            self.front = None
             self.end = None
             return
 
@@ -94,7 +94,7 @@ class PlayerList:
     # Lists out the player names in order
     def display(self, forward=True) -> str:
         display = "The list of players from front to back is:\n   "
-        link = self.root
+        link = self.front
         if not forward:
             display = "The list of players from back to front is:\n   "
             link = self.end
@@ -116,15 +116,15 @@ class PlayerList:
     # is the list empty?
     @property
     def is_empty(self):
-        return self.root is None
+        return self.front is None
 
     # How big the list is
     @property
     def size(self) -> int:
-        if self.root is None:
+        if self.front is None:
             return 0
         count: int = 1
-        n = self.root
+        n = self.front
         while n.next is not None:
             n = n.next
             count += 1
@@ -132,12 +132,12 @@ class PlayerList:
 
     # Start of the list
     @property
-    def root(self):
-        return self._root
+    def front(self):
+        return self._front
 
-    @root.setter
-    def root(self, value):
-        self._root = value
+    @front.setter
+    def front(self, value):
+        self._front = value
 
     # End of the list
     @property

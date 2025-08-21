@@ -9,7 +9,7 @@ from player import Player
 from player_node import PlayerNode
 
 
-class test_player_list(unittest.TestCase):
+class TestPlayerList(unittest.TestCase):
     def setUp(self):
         self.player_list = PlayerList()
 
@@ -37,7 +37,7 @@ class test_player_list(unittest.TestCase):
     def test_push_to_front_is_in_correct_position(self):
         self.player_list.push_to_front(PlayerNode(Player("001", "Player1")))
         self.player_list.push_to_front(PlayerNode(Player("003", "Player1")))
-        self.assertEqual(self.player_list.root.player.uid, "003", "List does not add to the front of the list")
+        self.assertEqual(self.player_list.front.player.uid, "003", "List does not add to the front of the list")
 
     def test_push_to_end_is_in_correct_position(self):
         self.player_list.push_to_end(PlayerNode(Player("001", "Player1")))
