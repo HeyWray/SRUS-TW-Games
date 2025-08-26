@@ -10,7 +10,7 @@ class Player():
     def __str__(self) -> str:
         return f"Player: {self.name}, ID: {self.uid}"
 
-    # <editor-fold desc="Properties and Setters">
+
     @property
     def uid(self) -> str:
         return self._uid

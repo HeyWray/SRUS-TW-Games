@@ -115,8 +115,6 @@ class PlayerList:
                 link = link.pre
         return display
 
-    # <editor-fold desc="Properties and Setters">
-
     """Is the list empty?"""
     @property
     def is_empty(self):
@@ -157,5 +155,4 @@ class PlayerList:
         if self.__len__ == 0:
             return False
         return True
-    # </editor-fold>
 

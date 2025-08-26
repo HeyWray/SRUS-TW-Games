@@ -13,7 +13,8 @@ class PlayerNode:
     def __str__(self):
         return f"Player Node for {self.player}"
 
-    # <editor-fold desc="Properties and Setters">
+
+
     @property
     def key(self):
         return self.player.uid
@@ -41,5 +42,4 @@ class PlayerNode:
     @pre.setter
     def pre(self, set_to):
         self._pre = set_to
-    # </editor-fold>
 
