@@ -22,17 +22,17 @@ class TestPlayerList(unittest.TestCase):
 
     def test_push_to_end_adds_one_node(self):
         self.player_list.push_to_end(PlayerNode(Player("001", "Player1")))
-        self.assertEqual(self.player_list.size, 1, "List has more then 1 node")
+        self.assertEqual(self.player_list.__len__, 1, "List has more then 1 node")
 
     def test_random_player_is_added(self):
         self.player_list.push_to_front(PlayerNode(Player.create_random_player()))
-        self.assertEqual(self.player_list.size, 1, "List has more then 1 node")
+        self.assertEqual(self.player_list.__len__, 1, "List has more then 1 node")
 
     def test_add_multiple_players(self):
         self.player_list.push_to_front(PlayerNode(Player("001", "Player1")))
         self.player_list.push_to_end(PlayerNode(Player("002", "Player2")))
         self.player_list.push_to_end(PlayerNode(Player("003", "Player3")))
-        self.assertEqual(self.player_list.size, 3, "List has more then 3 player nodes")
+        self.assertEqual(self.player_list.__len__, 3, "List has more then 3 player nodes")
 
     def test_push_to_front_is_in_correct_position(self):
         self.player_list.push_to_front(PlayerNode(Player("001", "Player1")))

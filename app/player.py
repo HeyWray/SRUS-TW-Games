@@ -20,9 +20,10 @@ class Player():
         return self._player_name
     # </editor-fold>
 
+    """Handles creating a new player
+    If no name or uid is specified then creates a random name and uid
+    """
     @classmethod
-    # Static. Handles creating a new player. If no name or uid
-    # is specified then creates a random name and uid
     def create_random_player(cls):
         import random
 

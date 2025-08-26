@@ -16,8 +16,6 @@ class PlayerNode:
     # <editor-fold desc="Properties and Setters">
     @property
     def key(self):
-        #prefered to call player's UID but this
-        #is an alternative call
         return self.player.uid
 
     @property
