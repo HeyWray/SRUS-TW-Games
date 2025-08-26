@@ -1,6 +1,8 @@
 """
 The identity of the player with name and uid
 """
+import player
+
 
 class Player():
     def __init__(self, uid: str, player_name: str):
@@ -18,7 +20,7 @@ class Player():
     @property
     def name(self) -> str:
         return self._player_name
-    # </editor-fold>
+
 
     """Handles creating a new player
     If no name or uid is specified then creates a random name and uid
@@ -33,3 +35,13 @@ class Player():
                 ["Nagz", "Ray", "Bluto", "Heavenly"])
 
         return cls(uid, name)
+
+    # def __eq__(self, other : player.Player):
+    #     return self.uid == other.uid
+
+    @classmethod
+    def hash_method(cls, key: str) -> int:
+        return hash(key)
+
+    def __hash__(self):
+        return self.hash_method(self.uid)

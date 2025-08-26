@@ -93,14 +93,30 @@ class PlayerList:
         check_player.pre.next = check_player.next
         check_player.next.pre = check_player.pre
 
+    """Gets a player based on a uid"""
+    def get_player_by_uid(self, uid: str) -> PlayerNode:
+        if self.__len__ == 0:
+            return None
+        check_player = self.front
+        while check_player.player.uid != uid:
+            check_player = check_player.next
+            if check_player is None:
+                return None
+
+        #we found the uid
+        return check_player
+
     """Returns a list of player names in order
     true for front to end, false for end to front
     """
-    def display(self, forward=True) -> str:
-        display = "The list of players from front to back is:\n   "
+    def display(self, forward=True, withMessage=False) -> str:
+        display = ""
+        if withMessage:
+            display += "The list of players from front to back is:\n   "
         link = self.front
         if not forward:
-            display = "The list of players from back to front is:\n   "
+            if withMessage:
+                display = "The list of players from back to front is:\n   "
             link = self.end
         while link is not None:
             display += str(link.player)
