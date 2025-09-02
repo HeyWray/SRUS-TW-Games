@@ -73,7 +73,7 @@ class PlayerList:
 
     """Removes a player based on a uid"""
     def remove_player_by_uid(self, uid: str):
-        if self.__len__ == 0:
+        if len(self) == 0:
             raise ValueError(("Error: The list is empty. Size is ", self.__len__), self)
         check_player = self.front
         while check_player.player.uid != uid:
@@ -84,7 +84,7 @@ class PlayerList:
         #we found the uid
 
         #is it the only one in the link?
-        if self.__len__ <= 1:
+        if len(self) <= 1:
             self.front = None
             self.end = None
             return
@@ -95,7 +95,7 @@ class PlayerList:
 
     """Gets a player based on a uid"""
     def get_player_by_uid(self, uid: str) -> PlayerNode:
-        if self.__len__ == 0:
+        if len(self) == 0:
             return None
         check_player = self.front
         while check_player.player.uid != uid:
@@ -137,7 +137,6 @@ class PlayerList:
         return self.front is None
 
     """How big the list is"""
-    @property
     def __len__(self) -> int:
         if self.front is None:
             return 0

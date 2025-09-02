@@ -1,8 +1,6 @@
 """
 The identity of the player with name and uid
 """
-import player
-
 
 class Player():
     def __init__(self, uid: str, player_name: str):
@@ -39,8 +37,7 @@ class Player():
     # def __eq__(self, other : player.Player):
     #     return self.uid == other.uid
 
-    @classmethod
-    def hash_method(cls, key: str) -> int:
+    def hash_method(key: str) -> int:
         return hash(key)
 
     def __hash__(self):
