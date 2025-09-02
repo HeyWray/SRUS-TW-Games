@@ -34,8 +34,8 @@ class Player():
 
         return cls(uid, name)
 
-    # def __eq__(self, other : player.Player):
-    #     return self.uid == other.uid
+    def __eq__(self, other):
+        return self.uid == other.uid
 
     def hash_method(key: str) -> int:
         return hash(key)
