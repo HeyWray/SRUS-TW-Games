@@ -14,7 +14,6 @@ class PlayerNode:
         return f"Player Node for {self.player}"
 
 
-
     @property
     def key(self):
         return self.player.uid
