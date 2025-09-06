@@ -19,10 +19,11 @@ class PlayerList:
     def __repr__(self):
         return f"Player link List of Players of size {self.__len__!r}"
 
-    """Adds a new player at the START of the list 
-    if the list is empty will just make a list of 1
-    """
+
     def push_to_front(self, player: PlayerNode):
+        """Adds a new player at the START of the list
+            if the list is empty will just make a list of 1
+            """
         if not isinstance(player, PlayerNode):
             raise ValueError("Error: You need to pass a PlayerNode. "
                              "See new_player in app.player_list")
@@ -34,10 +35,10 @@ class PlayerList:
         player.next = self.front
         self.front = player
 
-    """Adds a new player at the END of the list
-    if the list is empty will just make a list of 1
-    """
     def push_to_end(self, player: PlayerNode):
+        """Adds a new player at the END of the list
+            if the list is empty will just make a list of 1
+            """
         if not isinstance(player, PlayerNode):
             raise ValueError("Error: You need to pass a PlayerNode. "
                              "See new_player in app.player_list")
@@ -49,8 +50,8 @@ class PlayerList:
         player.pre = self.end
         self.end = player
 
-    """Removes whoever the front player is"""
     def remove_from_front(self):
+        """Removes whoever the front player is"""
         if self.is_empty:
             raise ValueError(("Error: The list is empty. Size is ", self.__len__), self)
         if self.front == self.end:
@@ -60,8 +61,8 @@ class PlayerList:
         self.front = self.front.next
         self.front.pre = None
 
-    """Removes whoever the end player is"""
     def remove_from_end(self):
+        """Removes whoever the end player is"""
         if self.__len__ == 0:
             raise ValueError(("Error: The list is empty. Size is ", self.__len__), self)
         if self.front == self.end:
@@ -71,8 +72,8 @@ class PlayerList:
         self.end = self.end.pre
         self.end.next = None
 
-    """Removes a player based on a uid"""
     def remove_player_by_uid(self, uid: str):
+        """Removes a player based on a uid"""
         if self.__len__ == 0:
             raise ValueError(("Error: The list is empty. Size is ", self.__len__), self)
         check_player = self.front
@@ -93,10 +94,11 @@ class PlayerList:
         check_player.pre.next = check_player.next
         check_player.next.pre = check_player.pre
 
-    """Returns a list of player names in order
-    true for front to end, false for end to front
-    """
+
     def display(self, forward=True) -> str:
+        """Returns a list of player names in order
+            true for front to end, false for end to front
+            """
         display = "The list of players from front to back is:\n   "
         link = self.front
         if not forward:
@@ -115,13 +117,15 @@ class PlayerList:
                 link = link.pre
         return display
 
-    """Is the list empty?"""
+
     @property
+    """Is the list empty?"""
     def is_empty(self):
         return self.front is None
 
-    """How big the list is"""
+
     @property
+    """How big the list is"""
     def __len__(self) -> int:
         if self.front is None:
             return 0
@@ -132,8 +136,8 @@ class PlayerList:
             count += 1
         return count
 
-    """Start of the list"""
     @property
+    """Start of the list"""
     def front(self):
         return self._front
 
@@ -141,8 +145,8 @@ class PlayerList:
     def front(self, value):
         self._front = value
 
-    """End of the list"""
     @property
+    """End of the list"""
     def end(self):
         return self._end
 
