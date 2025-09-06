@@ -19,12 +19,12 @@ class PlayerList:
     def __repr__(self):
         return f"Player link List of Players of size {self.__len__!r}"
 
-    """Adds a new player at the START of the list 
-    if the list is empty will just make a list of 1
-    """
     def push_to_front(self, player: PlayerNode):
+        """Adds a new player at the START of the list
+        if the list is empty will just make a list of 1
+        """
         if not isinstance(player, PlayerNode):
-            raise ValueError("Error: You need to pass a PlayerNode. "
+            raise TypeError("Error: You need to pass a PlayerNode. "
                              "See new_player in app.player_list")
         if self.is_empty:
             self.front = player
@@ -34,12 +34,12 @@ class PlayerList:
         player.next = self.front
         self.front = player
 
-    """Adds a new player at the END of the list
-    if the list is empty will just make a list of 1
-    """
     def push_to_end(self, player: PlayerNode):
+        """Adds a new player at the END of the list
+        if the list is empty will just make a list of 1
+        """
         if not isinstance(player, PlayerNode):
-            raise ValueError("Error: You need to pass a PlayerNode. "
+            raise TypeError("Error: You need to pass a PlayerNode. "
                              "See new_player in app.player_list")
         if self.is_empty:
             self.front = player
@@ -49,10 +49,8 @@ class PlayerList:
         player.pre = self.end
         self.end = player
 
-    """Removes whoever the front player is"""
     def remove_from_front(self):
-        if self.is_empty:
-            raise ValueError(("Error: The list is empty. Size is ", self.__len__), self)
+        """Removes whoever the front player is"""
         if self.front == self.end:
             self.front = None
             self.end = None
@@ -60,10 +58,8 @@ class PlayerList:
         self.front = self.front.next
         self.front.pre = None
 
-    """Removes whoever the end player is"""
     def remove_from_end(self):
-        if self.__len__ == 0:
-            raise ValueError(("Error: The list is empty. Size is ", self.__len__), self)
+        """Removes whoever the end player is"""
         if self.front == self.end:
             self.front = None
             self.end = None
@@ -71,8 +67,8 @@ class PlayerList:
         self.end = self.end.pre
         self.end.next = None
 
-    """Removes a player based on a uid"""
     def remove_player_by_uid(self, uid: str):
+        """Removes a player based on a uid"""
         if len(self) == 0:
             raise ValueError(("Error: The list is empty. Size is ", self.__len__), self)
         check_player = self.front
@@ -93,8 +89,8 @@ class PlayerList:
         check_player.pre.next = check_player.next
         check_player.next.pre = check_player.pre
 
-    """Gets a player based on a uid"""
     def get_player_by_uid(self, uid: str) -> PlayerNode:
+        """Gets a player based on a uid"""
         if len(self) == 0:
             return None
         check_player = self.front
@@ -106,10 +102,10 @@ class PlayerList:
         #we found the uid
         return check_player
 
-    """Returns a list of player names in order
-    true for front to end, false for end to front
-    """
     def display(self, forward=True, withMessage=False) -> str:
+        """Returns a list of player names in order
+        true for front to end, false for end to front
+        """
         display = ""
         if withMessage:
             display += "The list of players from front to back is:\n   "
@@ -131,13 +127,13 @@ class PlayerList:
                 link = link.pre
         return display
 
-    """Is the list empty?"""
     @property
     def is_empty(self):
+        """Is the list empty?"""
         return self.front is None
 
-    """How big the list is"""
     def __len__(self) -> int:
+        """How big the list is"""
         if self.front is None:
             return 0
         count: int = 1
@@ -147,27 +143,22 @@ class PlayerList:
             count += 1
         return count
 
-    """Start of the list"""
     @property
     def front(self):
+        """Start of the list"""
         return self._front
 
     @front.setter
     def front(self, value):
         self._front = value
 
-    """End of the list"""
     @property
     def end(self):
+        """End of the list"""
         return self._end
 
     @end.setter
     def end(self, value):
         self._end = value
 
-    @property
-    def check_has_a_player_node(self):
-        if self.__len__ == 0:
-            return False
-        return True
 
