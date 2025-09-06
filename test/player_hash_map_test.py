@@ -12,7 +12,7 @@ class TestPlayerHashMap(unittest.TestCase):
         self.test_hash_map = PlayerHashMap()
 
     def test_size_is_ten_on_init(self):
-        self.assertEqual(len(self.test_hash_map.hash_map), 200, "Hash map is not equal to 10")
+        self.assertEqual(len(self.test_hash_map.hash_map), 10, "Hash map is not equal to 10")
 
     def test_adds_a_player_node_by_hash(self):
         self.test_hash_map["001"] = "HashFriend"
@@ -29,6 +29,14 @@ class TestPlayerHashMap(unittest.TestCase):
     def test_delete_player_node_by_uid(self):
         self.test_hash_map["001"] = "HashFriend"
         self.test_hash_map["002"] = "HashMutual"
+        del self.test_hash_map["001"]
+        self.assertEqual(self.test_hash_map["001"], None)
+
+    def test_delete_on_an_empty_hash(self):
+        del self.test_hash_map["001"]
+        self.assertEqual(self.test_hash_map["001"], None)
+        self.test_hash_map["001"] = "HashFriend"
+        del self.test_hash_map["001"]
         del self.test_hash_map["001"]
         self.assertEqual(self.test_hash_map["001"], None)
 

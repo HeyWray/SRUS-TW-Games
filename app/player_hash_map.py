@@ -9,7 +9,7 @@ from player_node import PlayerNode
 
 class PlayerHashMap():
 
-    HASH_SIZE: int = 200
+    HASH_SIZE: int = 10
 
     def __init__(self):
         self.hash_map = []
