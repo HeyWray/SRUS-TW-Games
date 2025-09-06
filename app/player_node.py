@@ -13,8 +13,6 @@ class PlayerNode:
     def __str__(self):
         return f"Player Node for {self.player}"
 
-
-
     @property
     def key(self):
         return self.player.uid

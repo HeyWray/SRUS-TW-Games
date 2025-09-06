@@ -14,10 +14,10 @@ class PlayerList:
         self._end = None
 
     def __str__(self):
-        return f"Player link List of Players of size {self.__len__}"
+        return f"Player link List of Players of size {len(self)}"
 
     def __repr__(self):
-        return f"Player link List of Players of size {self.__len__!r}"
+        return f"Player link List of Players of size {len(self)!r}"
 
     def push_to_front(self, player: PlayerNode):
         """Adds a new player at the START of the list
@@ -69,8 +69,6 @@ class PlayerList:
 
     def remove_player_by_uid(self, uid: str):
         """Removes a player based on a uid"""
-        if len(self) == 0:
-            raise ValueError(("Error: The list is empty. Size is ", self.__len__), self)
         check_player = self.front
         while check_player.player.uid != uid:
             check_player = check_player.next
