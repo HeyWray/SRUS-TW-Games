@@ -19,6 +19,16 @@ class PlayerList:
     def __repr__(self):
         return f"Player link List of Players of size {len(self)!r}"
 
+    def __len__(self) -> int:
+        """How big the list is"""
+        if self.front is None:
+            return 0
+        count: int = 1
+        n = self.front
+        while n.next is not None:
+            n = n.next
+            count += 1
+        return count
 
     def push_to_front(self, player: PlayerNode):
         """Adds a new player at the START of the list
@@ -118,18 +128,6 @@ class PlayerList:
     def is_empty(self):
         """Is the list empty?"""
         return self.front is None
-
-
-    def __len__(self) -> int:
-        """How big the list is"""
-        if self.front is None:
-            return 0
-        count: int = 1
-        n = self.front
-        while n.next is not None:
-            n = n.next
-            count += 1
-        return count
 
     @property
     def front(self):
