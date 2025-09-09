@@ -10,6 +10,11 @@ class Player():
     def __str__(self) -> str:
         return f"Player: {self.name}, ID: {self.uid}"
 
+    def __hash__(self):
+        return self.hash_method(self.uid)
+
+    def __eq__(self, other):
+        return self.uid == other.uid
 
     @property
     def uid(self) -> str:
@@ -18,8 +23,6 @@ class Player():
     @property
     def name(self) -> str:
         return self._player_name
-
-
 
     @classmethod
     def create_random_player(cls):
@@ -35,11 +38,5 @@ class Player():
 
         return cls(uid, name)
 
-    def __eq__(self, other):
-        return self.uid == other.uid
-
     def hash_method(key: str) -> int:
         return hash(key)
-
-    def __hash__(self):
-        return self.hash_method(self.uid)

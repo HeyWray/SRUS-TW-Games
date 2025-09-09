@@ -48,13 +48,15 @@ class PlayerHashMap():
             player_list.remove_player_by_uid(uid)
 
     def __len__(self) -> int:
-        """Return the number of players in the hash map."""
         hash_size = 0
         for i in range(0, self.HASH_SIZE):
             hash_size += len(self.hash_map[i])
         return hash_size
 
     def display(self):
+        """Prints a large message of every
+        player_list and each list's contents
+        """
         display_message = "Displaying the Hash Map:\n"
         for i in range(0, self.HASH_SIZE):
             display_message += ("  Hash table " + str(i + 1) + " is length "
@@ -64,4 +66,5 @@ class PlayerHashMap():
         return display_message
 
     def get_index(self, uid) -> int:
+        """Finds the location of a player by given uid"""
         return hash(uid) % self.HASH_SIZE
