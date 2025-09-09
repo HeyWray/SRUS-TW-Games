@@ -20,6 +20,7 @@ class PlayerList:
         return f"Player link List of Players of size {len(self)!r}"
 
     def __len__(self) -> int:
+        """How big the list is"""
         if self.front is None:
             return 0
         count: int = 1
