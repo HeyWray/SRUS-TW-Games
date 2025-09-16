@@ -47,12 +47,18 @@ class TestPlayer(unittest.TestCase):
         players = []
         for i in range(10):
             players.append(Player.create_random_player())
-        players = Player.sort_by_score_quickly(players)
+        players = Player.sort_by_descending_score(players)
         sort_players = sorted(players, reverse=True)
         self.assertEqual(players, sort_players)
 
     def test_1000_players(self):
-        players = [Player(f"{i}", f"Player {i}", random.randint(0, 1000)) for i in range(1000)]
-        players = Player.sort_by_score_quickly(players)
+        players = [Player(f"{i}", f"Player {i}", i) for i in range(1000)]
+        players = Player.sort_by_descending_score(players)
+        sort_players = sorted(players, reverse=True)
+        self.assertEqual(players, sort_players)
+
+    def test_custom_sort_after_inbuilt_sort(self):
+        players = [Player(f"{i}", f"Player {i}", i) for i in range(10)]
+        players = Player.sort_by_descending_score(players)
         sort_players = sorted(players, reverse=True)
         self.assertEqual(players, sort_players)

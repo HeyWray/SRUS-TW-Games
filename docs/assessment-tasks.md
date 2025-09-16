@@ -300,7 +300,25 @@ Create a test case that tries to sort 1000 players that are already sorted.
 If you get a failure, include the failure below:
 
 ```text
-YOUR FAILURE HERE
+Error
+Traceback (most recent call last):
+  File "C:\Users\wrayth\source\repos\SRUS-TW-Games\test\player_test.py", line 56, in test_1000_players
+    players = Player.sort_by_descending_score(players)
+  File "C:\Users\wrayth\source\repos\SRUS-TW-Games\app\player.py", line 74, in sort_by_descending_score
+    return (cls.sort_by_descending_score(greater_than)
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "C:\Users\wrayth\source\repos\SRUS-TW-Games\app\player.py", line 74, in sort_by_descending_score
+    return (cls.sort_by_descending_score(greater_than)
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "C:\Users\wrayth\source\repos\SRUS-TW-Games\app\player.py", line 74, in sort_by_descending_score
+    return (cls.sort_by_descending_score(greater_than)
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  [Previous line repeated 983 more times]
+  File "C:\Users\wrayth\source\repos\SRUS-TW-Games\app\player.py", line 69, in sort_by_descending_score
+    if i.score < pivot.score:
+       ^^^^^^^
+RecursionError: maximum recursion depth exceeded
+
 ```
 
 ##### 5.3.4.1 Question: Why does the algorithm fail on presorted values?
@@ -309,22 +327,21 @@ Provide a reason why this test failed (if you got a recursion errors, you need t
 
 If your implementation did not fail, you must nevertheless explain why the senior developers algorithm has worse space complexity for presorted values.
 
-> Answer here
+> This will help divide each array evenly rather than creating lobsided arrays which will cause more recursions
 
 Propose a fix to your sorting algorithm that fixes this issue.
 
 ```python
-# YOUR FIX HERE
-# Highlight what the fix was
+pivot = player_array[len(player_array) // 2]
 ```
 
 #### 5.3.5. Success criteria
 
-- [ ] Test case added to `test_player.py`
-- [ ] Test case passes only when changes above are added
-- [ ] Explanation of why the algorithm fails on presorted values
-- [ ] Fix to the algorithm provided
-- [ ] At least one commit capturing the above changes
+- [x] Test case added to `test_player.py`
+- [x] Test case passes only when changes above are added
+- [x] Explanation of why the algorithm fails on presorted values
+- [x] Fix to the algorithm provided
+- [x] At least one commit capturing the above changes
 
 ## 6. Task: Authenticity of in class work
 

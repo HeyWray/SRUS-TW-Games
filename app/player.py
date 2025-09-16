@@ -57,11 +57,11 @@ class Player():
         return hash(key)
 
     @classmethod
-    def sort_by_score_quickly(cls, player_array):
+    def sort_by_descending_score(cls, player_array):
         if len(player_array) <= 1:
             return player_array
 
-        pivot = player_array[0]
+        pivot = player_array[len(player_array) // 2]
         less_than = []
         greater_than = []
 
@@ -71,6 +71,15 @@ class Player():
             else:
                 greater_than.append(i)
 
-        return (cls.sort_by_score_quickly(greater_than)
+        return (cls.sort_by_descending_score(greater_than)
                 + [pivot]
-                + cls.sort_by_score_quickly(less_than))
+                + cls.sort_by_descending_score(less_than))
+
+
+
+    # if (len(player_array) >= 2
+    #         and player_array[0].score >= player_array[1].score):
+    #     for i in range(len(player_array)):
+    #         if player_array[i].score < player_array[i].score:
+    #             break
+    #     return player_array
