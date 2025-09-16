@@ -25,14 +25,13 @@ class TestPlayer(unittest.TestCase):
     def test_sort_players(self):
         players = [Player("001", "Alice", 10), Player("002", "Bob",5),
                    Player("003", "Charlie", 15)]
+
         # do **not** change the following code:
         sorted_players = sorted(players)
 
         # players must be sorted by score as shown here:
         manually_sorted_players = [Player("002","Bob", 5), Player("001", "Alice", 10),
                                    Player("003", "Charlie", 15)]
-
-        print(f"sorted = {sorted_players},\nmanual = {manually_sorted_players}")
 
         self.assertListEqual(sorted_players, manually_sorted_players)
 
@@ -45,3 +44,10 @@ class TestPlayer(unittest.TestCase):
         self.assertTrue(bob < alice)
         # or, event better
         self.assertGreater(alice, bob)
+
+    def test_custom_sort_by_score_quickly(self):
+        players = []
+        for i in range(0,10):
+            players.append(Player.create_random_player())
+        players = Player.sort_by_score_quickly(players)
+        self.assertTrue(players[0] > players[1])

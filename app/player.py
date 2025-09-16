@@ -9,7 +9,7 @@ class Player():
         self._score = score
 
     def __str__(self) -> str:
-        return f"Player: {self.name}, ID: {self.uid}"
+        return f"Player: {self.name}, ID: {self.uid}, Score: {self.score}"
 
     def __hash__(self):
         return self.hash_method(self.uid)
@@ -49,8 +49,28 @@ class Player():
                 100, 1000))
         name = random.choice(
                 ["Nagz", "Ray", "Bluto", "Heavenly"])
+        score = random.randint(0, 100)
 
-        return cls(uid, name)
+        return cls(uid, name, score)
 
     def hash_method(key: str) -> int:
         return hash(key)
+
+    @classmethod
+    def sort_by_score_quickly(cls, player_array):
+        if len(player_array) <= 1:
+            return player_array
+
+        pivot = player_array[0]
+        less_than = []
+        greater_than = []
+
+        for i in player_array[1:]:
+            if i.score < pivot.score:
+                less_than.append(i)
+            else:
+                greater_than.append(i)
+
+        return (cls.sort_by_score_quickly(greater_than)
+                + [pivot]
+                + cls.sort_by_score_quickly(less_than))

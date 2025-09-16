@@ -118,7 +118,6 @@ What is the **only** magic method that must be implemented in the player class f
 
 **Hint:** if you don't recall this from class, the error message you got when you ran the test will help you.
 -------
-> Answer Here
 > __gt__
 -------
 #### 4.3.2. Task: Implement the magic method in the Player class
@@ -179,7 +178,6 @@ AssertionError: Lists differ: [<pla[28 chars]23321760A50>, <player.Player object
 ##### 4.3.4.1 Question: why did the equality comparison fail?
 Why did the test fail (note: if it doesn't fail, it means there is something you have already done before you were asked to do so - if that's the case, you need to figure out what that is!)?
 -------
-> Answer here
 > While the two lists contain the same "concepts" of two lists with the same players, in memory each created player is different in memory. Initially they did equal because of the eq method overriding them
 -------
 Add the necessary code to the Player class to ensure that the `test_sort_players` test passes.
@@ -222,7 +220,9 @@ def sort_quickly(arr):
 
 What is the expected time and space complexity of the above algorithm? You can answer using big O or in plain English but in both cases you MUST justify your answer.
 
-> Answer here
+> As the list gets bigger it's size and time increases at a similar rate (the time factor would be more impactful than size). Worst case the algorythm will have called the method the same number of times as the size of the array. 
+> 
+> As the list divides by the method, memory has to hold onto a series of new arrays with the same or similar content in them.
 
 ### 5.2. Task: Implement the custom sorting algorithm
 
@@ -237,16 +237,21 @@ Add a separate test case to `test_player.py` to test your custom sorting algorit
 Include your code below:
 
 ```python
-# YOUR CUSTOM Sorting here
+    def test_custom_sort_by_score_quickly(self):
+        players = []
+        for i in range(0,10):
+            players.append(Player.create_random_player())
+        players = Player.sort_by_score_quickly(players)
+        self.assertTrue(players[0] > players[1])
 ```
 
 #### 5.2.3. Success criteria
 
-- [ ] Custom sorting algorithm implemented in the `Player` class as `classmethod`
-- [ ] Custom sorting algorithm sorts in descending order
-- [ ] Custom sorting algorithm compares players using their score (via the rich comparison operators)
-- [ ] Custom sorting algorithm tested in `test_player.py` and tests passed
-- [ ] At least one commit capturing the above changes
+- [x] Custom sorting algorithm implemented in the `Player` class as `classmethod`
+- [x] Custom sorting algorithm sorts in descending order
+- [x] Custom sorting algorithm compares players using their score (via the rich comparison operators)
+- [x] Custom sorting algorithm tested in `test_player.py` and tests passed
+- [x] At least one commit capturing the above changes
 
 ### 5.3. Test your custom sorting algorithm at scale
 
