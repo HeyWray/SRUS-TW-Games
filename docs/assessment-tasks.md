@@ -220,9 +220,9 @@ def sort_quickly(arr):
 
 What is the expected time and space complexity of the above algorithm? You can answer using big O or in plain English but in both cases you MUST justify your answer.
 
-> As the list gets bigger it's size and time increases at a similar rate (the time factor would be more impactful than size). Worst case the algorythm will have called the method the same number of times as the size of the array. 
+> As the list gets bigger the number of steps increases at a similar rate. Worst case the algorythm will have called the method the same number of times as the size of the array. 
 > 
-> As the list divides by the method, memory has to hold onto a series of new arrays with the same or similar content in them.
+> As the list sequentially halves, memory has to hold onto a series of new arrays with the same values.
 
 ### 5.2. Task: Implement the custom sorting algorithm
 
@@ -237,12 +237,13 @@ Add a separate test case to `test_player.py` to test your custom sorting algorit
 Include your code below:
 
 ```python
-    def test_custom_sort_by_score_quickly(self):
-        players = []
-        for i in range(0,10):
-            players.append(Player.create_random_player())
-        players = Player.sort_by_score_quickly(players)
-        self.assertTrue(players[0] > players[1])
+def test_custom_sort_by_score_quickly(self):
+    players = []
+    for i in range(10):
+        players.append(Player.create_random_player())
+    players = Player.sort_by_score_quickly(players)
+    sort_players = sorted(players, reverse=True)
+    self.assertEqual(players, sort_players)
 ```
 
 #### 5.2.3. Success criteria
@@ -273,16 +274,20 @@ Include your test case below:
 
 ```python
 
-# YOUR TEST CASE HERE
+def test_1000_players(self):
+    players = [Player(f"{i}", f"Player {i}", random.randint(0, 1000)) for i in range(1000)]
+    players = Player.sort_by_score_quickly(players)
+    sort_players = sorted(players, reverse=True)
+    self.assertEqual(players, sort_players)
 
 ```
 
 #### 5.3.2. Success criteria
 
-- [ ] Test case added to `test_player.py`
-- [ ] Test case sorts 1000 players correctly when compared to `sorted` function
-- [ ] Test case passes when run against the submitted code
-- [ ] At least one commit capturing the above changes
+- [x] Test case added to `test_player.py`
+- [x] Test case sorts 1000 players correctly when compared to `sorted` function
+- [x] Test case passes when run against the submitted code
+- [x] At least one commit capturing the above changes
 
 #### 5.3.3. Task: Testing sorting sorted players
 

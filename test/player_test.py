@@ -4,11 +4,9 @@ import unittest
 from player_list import PlayerList
 from player import Player
 from player_node import PlayerNode
+import random
 
 class TestPlayer(unittest.TestCase):
-    def setUp(self):
-        self.player = Player("001", "Thomas")
-
     def test_player_uid(self):
         player_list = PlayerList()
         player_list.push_to_front(PlayerNode(Player("002", "Player2")))
@@ -47,7 +45,14 @@ class TestPlayer(unittest.TestCase):
 
     def test_custom_sort_by_score_quickly(self):
         players = []
-        for i in range(0,10):
+        for i in range(10):
             players.append(Player.create_random_player())
         players = Player.sort_by_score_quickly(players)
-        self.assertTrue(players[0] > players[1])
+        sort_players = sorted(players, reverse=True)
+        self.assertEqual(players, sort_players)
+
+    def test_1000_players(self):
+        players = [Player(f"{i}", f"Player {i}", random.randint(0, 1000)) for i in range(1000)]
+        players = Player.sort_by_score_quickly(players)
+        sort_players = sorted(players, reverse=True)
+        self.assertEqual(players, sort_players)
