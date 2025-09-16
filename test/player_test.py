@@ -32,7 +32,7 @@ class TestPlayer(unittest.TestCase):
         manually_sorted_players = [Player("002","Bob", 5), Player("001", "Alice", 10),
                                    Player("003", "Charlie", 15)]
 
-        print(f"sorted = {sorted_players[0]},\nmanual = {manually_sorted_players[0]}")
+        print(f"sorted = {sorted_players},\nmanual = {manually_sorted_players}")
 
         self.assertListEqual(sorted_players, manually_sorted_players)
 
