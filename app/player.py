@@ -3,9 +3,10 @@ The identity of the player with name and uid
 """
 
 class Player():
-    def __init__(self, uid: str, player_name: str):
+    def __init__(self, uid: str, player_name: str, score: int | None = 0):
         self._uid = uid
         self._player_name = player_name
+        self._score = score
 
     def __str__(self) -> str:
         return f"Player: {self.name}, ID: {self.uid}"
@@ -23,6 +24,16 @@ class Player():
     @property
     def name(self) -> str:
         return self._player_name
+
+    @property
+    def score(self) -> int:
+        return self._score
+
+    @score.setter
+    def score(self, value: int):
+        if value < 0:
+            raise ValueError("Please set a score equal to or greater then 0")
+        self._score = value
 
     @classmethod
     def create_random_player(cls):
