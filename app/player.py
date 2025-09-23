@@ -24,9 +24,17 @@ class Player():
     def uid(self) -> str:
         return self._uid
 
+    @uid.setter
+    def uid(self, uid: str):
+        self._uid = uid
+
     @property
     def name(self) -> str:
         return self._player_name
+
+    @name.setter
+    def name(self, name: str):
+        self._player_name = name
 
     @property
     def score(self) -> int:
