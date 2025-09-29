@@ -82,12 +82,3 @@ class Player():
         return (cls.sort_by_descending_score(greater_than)
                 + [pivot]
                 + cls.sort_by_descending_score(less_than))
-
-
-
-    # if (len(player_array) >= 2
-    #         and player_array[0].score >= player_array[1].score):
-    #     for i in range(len(player_array)):
-    #         if player_array[i].score < player_array[i].score:
-    #             break
-    #     return player_array

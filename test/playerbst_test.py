@@ -17,7 +17,18 @@ class TestPlayerBST(unittest.TestCase):
         self.assertIs(self.bst.is_empty, False)
 
     def test_add_10_to_bst(self):
-        i = 1
         for i in range(1, 11):
-            self.bst.insert(Player(f"00{i}", random.choice(self.names)))
-        self.assertEqual(i, 10)
+            self.bst.insert(Player(f"00{i}", f"{random.choice(self.names)} {i}"))
+        self.assertEqual(len(self.bst), 10)
+
+    def test_search(self):
+        for i in range(1, 11):
+            self.bst.insert(Player(f"00{i}", f"{random.choice(self.names)} {i}"))
+        self.bst.insert(Player(f"011", "Billy Bob"))
+        self.assertIsNotNone(self.bst.search("Billy Bob"))
+        self.assertEqual(self.bst.search("Billy Bob").player.name, "Billy Bob")
+
+    def test_sort(self):
+        for i in range(1, 11):
+            self.bst.insert(Player(f"00{i}", f"{random.choice(self.names)} {i}"))
+        self.bst.sort()

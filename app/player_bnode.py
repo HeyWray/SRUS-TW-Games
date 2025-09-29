@@ -12,6 +12,14 @@ class PlayerBNode:
         self._left = None
         self._right = None
 
+    def __str__(self):
+        return f"PlayerBNode of Player {self.player.name}, score: {self.player.score}"
+
+    def __lt__(self, other):
+        return self.player.name < other.player.name
+
+    def __ge__(self, other):
+        return self.player.name > other.player.name
 
     #Getters and Setters
     @property
