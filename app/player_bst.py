@@ -95,27 +95,37 @@ class PlayerBST:
         if self.root is None:
             return
 
-        #first time grabs BST as array and sorts it
+        #first time around, get BST as array, sorts it, and assign middle as root
         if set_node is None:
             bst_array = self.get_as_array()
             bst_array = sorted(bst_array)
-            self.root = bst_array[len(bst_array)//2]
+            self.root = bst_array.pop(len(bst_array)//2)
             set_node = self.root
-            print(f"  root {self.root}")
 
-        if set_node is not self.root:
-            print(f"  divide {len(bst_array)}")
-            if set_node > bst_array[len(bst_array)//2]:
-                set_node.left = bst_array[len(bst_array)//2]
+        #subsequent recursions
+        else:
+            #find the center of the array
+            middle = bst_array.pop(len(bst_array)//2)
+            #assign the right or left if it is bigger
+            if set_node < middle:
+                set_node.right = middle
             else:
-                set_node.right = bst_array[len(bst_array)//2]
+                set_node.left = middle
+            set_node = middle
 
+        #clear the node's previous children
+        set_node.left = None
+        set_node.right = None
+
+        # split the array into 2
         left_split = bst_array[:len(bst_array)//2]
-        if len(left_split) > 0:
-            self.sort(set_node.left, left_split[:len(left_split)//2])
         right_split = bst_array[len(bst_array) // 2:]
+
+        #if either split has nodes then start another recursion
+        if len(left_split) > 0:
+            self.sort(set_node, left_split)
         if len(right_split) > 0:
-            self.sort(set_node.right, right_split[:len(right_split) // 2])
+            self.sort(set_node, right_split)
 
     def get_as_array(self, player_b_node : PlayerBNode | None = None) -> []:
         #start at root

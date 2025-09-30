@@ -29,6 +29,7 @@ class TestPlayerBST(unittest.TestCase):
         self.assertEqual(self.bst.search("Billy Bob").player.name, "Billy Bob")
 
     def test_sort(self):
-        for i in range(1, 11):
-            self.bst.insert(Player(f"00{i}", f"{random.choice(self.names)} {i}"))
+        for i in range(1, 21):
+            self.bst.insert(Player(f"00{i}", f"{i}"))
         self.bst.sort()
+        self.assertTrue(self.bst.root.left.right < self.bst.root.right.left)
