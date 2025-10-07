@@ -34,7 +34,7 @@ class PlayerHashMap():
         uid = key
         player = self.hash_map[self.get_index(uid)].get_player_by_uid(uid)
         if player is not None:
-            return self.hash_map[self.get_index(uid)].get_player_by_uid(uid)
+            raise ValueError(f"Cannot get player {key}")
         return None
 
 

@@ -40,3 +40,4 @@ class Player():
 
     def hash_method(key: str) -> int:
         return hash(key)
+

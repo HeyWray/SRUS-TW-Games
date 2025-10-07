@@ -73,7 +73,7 @@ def sha256_hash(key: str, size: int) -> int:
 
 1. All of the above functions are hash functions. Explain how so - what key properties do they all share?
 
->  They are all hash functions because they all share the property of taking in a key and returning a value.
+>  They are all hash functions because they all share the property of taking in a value (usually called a key) and returning a value. (Can manipluate. avoid key).
 
 2. What are the advantages and disadvantages of each of the above hash functions? Evaluate in terms of uniformity, determinism, efficiency, collision resistance, sensitivity to input changes, and security[1](#Reference). You may need to do some reasearch to answer this question 😱
 
