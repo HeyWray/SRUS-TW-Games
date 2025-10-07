@@ -29,8 +29,9 @@ class TestPlayerHashMap(unittest.TestCase):
     def test_delete_player_node_by_uid(self):
         self.test_hash_map["001"] = "HashFriend"
         self.test_hash_map["002"] = "HashMutual"
-        del self.test_hash_map["001"]
-        self.assertEqual(self.test_hash_map["001"], None)
+        del self.test_hash_map["002"]
+        self.assertEqual(self.test_hash_map["002"], None)
+
 
     def test_delete_on_an_empty_hash(self):
         del self.test_hash_map["001"]

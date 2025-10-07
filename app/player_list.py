@@ -94,9 +94,21 @@ class PlayerList:
             self.end = None
             return
 
+
         #else it is somewhere through the chain
-        check_player.pre.next = check_player.next
-        check_player.next.pre = check_player.pre
+
+        #check if the player being removed is the front
+        if check_player is self.front:
+            self.front = check_player.next
+            self.front.pre = None
+        else:
+            check_player.pre.next = check_player.next
+        # check if the player being removed is the end
+        if check_player is self.end:
+            self.end = check_player.pre
+            self.end.next = None
+        else:
+            check_player.next.pre = check_player.pre
 
     def get_player_by_uid(self, uid: str) -> PlayerNode:
         """Gets a player based on a uid"""
