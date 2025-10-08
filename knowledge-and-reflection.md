@@ -73,9 +73,9 @@ def sha256_hash(key: str, size: int) -> int:
 
 1. All of the above functions are hash functions. Explain how so - what key properties do they all share?
 
->  They are all hash functions because they all share the property of taking in a value (usually called a key) and returning a value. (Can manipluate. avoid key).
+>  They are all hash functions because they all share the property of taking in a value (usually called a key), manipulate the value and returning a new value.
 
-2. What are the advantages and disadvantages of each of the above hash functions? Evaluate in terms of uniformity, determinism, efficiency, collision resistance, sensitivity to input changes, and security[1](#Reference). You may need to do some reasearch to answer this question 😱
+2. What are the advantages and disadvantages of each of the above hash functions? Evaluate in terms of uniformity, determinism, efficiency, collision resistance, sensitivity to input changes, and security[1](#Reference). You may need to do some research to answer this question 😱
 
 > 1. Is straightforward, efficient, and returns the same value every time; however, it will always produce a collision and there is no security or scalability.
 > 2. Is efficient and has middling levels of collisions depending on the size. Security wise it can work, but it is not bulletproof by any means.
@@ -85,13 +85,13 @@ def sha256_hash(key: str, size: int) -> int:
 
 3. List the three most important attributes (arranged from most to least) in the context of a hash map? Justify your answer.
 
-> 1. Security: The whole reason to implement a hash map is to obfuscate information making it secure. 
-> 2. Determinism: Secondly you want to make sure that you are able to get the results you need when you are searching and inputting. 
-> 3. Efficiency: Lastly, while it needs to be secure, it still needs to operate and perform it's function in a timely manner.
+> 1. Determinism: You want to make sure that you are able to get the results you need when you are searching and inputting. 
+> 2. Efficiency: It needs to operate and perform its function in a timely manner.
+> 3. Security: Obfuscating information is a handy result. 
 
 4. Which of the above hash functions would you choose to implement the requirements of the task? Why?
 
-> Pearson hash provides a good balance between security, efficiency, and collision prevention (I would have liked to do the pearson but couldn't get it right and did inbuilt)
+> Pearson hash provides a good balance between security, efficiency, and collision prevention
 
 5. In your own words, explain each line in the pearson hash function above in terms of the criteria you listed in question 2.
 
