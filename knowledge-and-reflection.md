@@ -95,7 +95,7 @@ def sha256_hash(key: str, size: int) -> int:
 
 5. In your own words, explain each line in the pearson hash function above in terms of the criteria you listed in question 2.
 
-> "Import random, creating a consistent randomized number from 42. Create a table to and shuffle it to provide randomness and security, this also increases it's sensitivity. Lastly create the key by looping through each character to provide a given consistent key based on the random values. "
+> Import random, creating a consistent randomized number from 42. Create a table to and shuffle it to provide randomness and security, this also increases it's sensitivity. Lastly create the key by looping through each character to provide a given consistent key based on the random values.
 
 6. Write pseudocode of how you would store Players in PlayerLists in a hash map.
 
