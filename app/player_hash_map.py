@@ -17,32 +17,28 @@ class PlayerHashMap():
             self.hash_map.append(PlayerList())
 
 
-    def __setitem__(self, key : str, value : str):
+    def __setitem__(self, uid : str, name : str):
         """Add a new player to PlayerList in a
             corresponding index in the hash map.
             """
-        uid = key
-        name = value
         player_list = self.hash_map[self.get_index(uid)]
         player_list.push_to_end(PlayerNode(Player(uid, name)))
 
 
-    def __getitem__(self, key : str) -> PlayerNode | None:
+    def __getitem__(self, uid : str) -> PlayerNode | None:
         """Retrieve a player from the PlayerList with
             the corresponding uid in the hash map.
             """
-        uid = key
         player = self.hash_map[self.get_index(uid)].get_player_by_uid(uid)
         if player is not None:
-            raise ValueError(f"Cannot get player {key}")
+            raise ValueError(f"Cannot get player {uid}")
         return None
 
 
-    def __delitem__(self, key):
+    def __delitem__(self, uid):
         """Remove a player from the PlayerList with
             the corresponding index in the hash map.
             """
-        uid = key
         player_list = self.hash_map[self.get_index(uid)]
         if player_list.get_player_by_uid(uid) is not None:
             player_list.remove_player_by_uid(uid)
@@ -67,4 +63,4 @@ class PlayerHashMap():
 
     def get_index(self, uid) -> int:
         """Finds the location of a player by given uid"""
-        return hash(uid) % self.HASH_SIZE
+        return hash(uid)

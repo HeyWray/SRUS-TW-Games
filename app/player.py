@@ -38,6 +38,7 @@ class Player():
 
         return cls(uid, name)
 
-    def hash_method(key: str) -> int:
-        return hash(key)
+    @classmethod
+    def hash_method(cls, key: str) -> int:
+        return hash(key) % 10
 

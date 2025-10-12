@@ -12,7 +12,7 @@ class TestPlayerHashMap(unittest.TestCase):
         self.test_hash_map = PlayerHashMap()
 
     def test_size_is_ten_on_init(self):
-        self.assertEqual(len(self.test_hash_map.hash_map), 10, "Hash map is not equal to 10")
+        self.assertEqual(len(self.test_hash_map.hash_size), 10, "Hash map is not equal to 10")
 
     def test_adds_a_player_node_by_hash(self):
         self.test_hash_map["001"] = "HashFriend"
