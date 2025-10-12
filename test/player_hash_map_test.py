@@ -12,7 +12,7 @@ class TestPlayerHashMap(unittest.TestCase):
         self.test_hash_map = PlayerHashMap()
 
     def test_size_is_ten_on_init(self):
-        self.assertEqual(len(self.test_hash_map.hash_size), 10, "Hash map is not equal to 10")
+        self.assertEqual(len(self.test_hash_map.hash_map), 10, "Hash map is not equal to 10")
 
     def test_adds_a_player_node_by_hash(self):
         self.test_hash_map["001"] = "HashFriend"
@@ -30,16 +30,18 @@ class TestPlayerHashMap(unittest.TestCase):
         self.test_hash_map["001"] = "HashFriend"
         self.test_hash_map["002"] = "HashMutual"
         del self.test_hash_map["002"]
-        self.assertEqual(self.test_hash_map["002"], None)
+        with self.assertRaises(ValueError):
+            self.test_hash_map["002"]
 
 
     def test_delete_on_an_empty_hash(self):
-        del self.test_hash_map["001"]
-        self.assertEqual(self.test_hash_map["001"], None)
+        with self.assertRaises(Exception):
+            del self.test_hash_map["001"]
+
         self.test_hash_map["001"] = "HashFriend"
         del self.test_hash_map["001"]
-        del self.test_hash_map["001"]
-        self.assertEqual(self.test_hash_map["001"], None)
+        with self.assertRaises(Exception):
+            del self.test_hash_map["001"]
 
     def test_display_hash(self):
         self.test_hash_map["001"] = "HashFriend"
@@ -51,6 +53,7 @@ class TestPlayerHashMap(unittest.TestCase):
     def test_add_100_player_nodes(self):
         for i in range (1,101):
             self.test_hash_map[str(i)] = "Hash_Player_" + str(i)
+
         self.assertEqual(self.test_hash_map["5"].player.name, "Hash_Player_5")
         self.assertEqual(len(self.test_hash_map), 100)
         print(self.test_hash_map.display())

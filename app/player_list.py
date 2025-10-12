@@ -14,10 +14,10 @@ class PlayerList:
         self._end = None
 
     def __str__(self):
-        return f"Player link List of Players of size {len(self)}"
+        return f"Player link List of size {len(self)}"
 
     def __repr__(self):
-        return f"Player link List of Players of size {len(self)!r}"
+        return f"Player link List of size {len(self)!r}"
 
     def __len__(self) -> int:
         """How big the list is"""

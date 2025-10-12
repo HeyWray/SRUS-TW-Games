@@ -11,7 +11,7 @@ class Player():
         return f"Player: {self.name}, ID: {self.uid}"
 
     def __hash__(self):
-        return self.hash_method(self.uid)
+        return self.hash_of_uid(self.uid)
 
     def __eq__(self, other):
         return self.uid == other.uid
@@ -39,6 +39,6 @@ class Player():
         return cls(uid, name)
 
     @classmethod
-    def hash_method(cls, key: str) -> int:
-        return hash(key) % 10
+    def hash_of_uid(cls, uid: str) -> int:
+        return hash(uid) % 10
 

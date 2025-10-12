@@ -30,9 +30,9 @@ class PlayerHashMap():
             the corresponding uid in the hash map.
             """
         player = self.hash_map[self.get_index(uid)].get_player_by_uid(uid)
-        if player is not None:
+        if player is None:
             raise ValueError(f"Cannot get player {uid}")
-        return None
+        return player
 
 
     def __delitem__(self, uid):
@@ -40,8 +40,9 @@ class PlayerHashMap():
             the corresponding index in the hash map.
             """
         player_list = self.hash_map[self.get_index(uid)]
-        if player_list.get_player_by_uid(uid) is not None:
-            player_list.remove_player_by_uid(uid)
+        if player_list is None:
+            raise Exception(f"Trying to delete player {uid} that doesn't exist")
+        player_list.remove_player_by_uid(uid)
 
     def __len__(self) -> int:
         hash_size = 0
@@ -63,4 +64,4 @@ class PlayerHashMap():
 
     def get_index(self, uid) -> int:
         """Finds the location of a player by given uid"""
-        return hash(uid)
+        return Player.hash_of_uid(uid)
