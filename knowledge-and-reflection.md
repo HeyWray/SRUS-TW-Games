@@ -38,8 +38,6 @@ import random
 
 random.seed(42)
 
-# This is INCORRECT:
-# pearson_table = [random.randint(0, 255) for _ in range(256)]
 pearson_table = list(range(256))
 random.shuffle(pearson_table)
 
@@ -85,8 +83,8 @@ def sha256_hash(key: str, size: int) -> int:
 
 3. List the three most important attributes (arranged from most to least) in the context of a hash map? Justify your answer.
 
-> 1. Determinism: You want to make sure that you are able to get the results you need when you are searching and inputting. 
-> 2. Efficiency: It needs to operate and perform its function in a timely manner.
+> 1. Efficiency: The intention behind a hash table is to create in a timely manner.
+> 2. Determinism: You want to make sure that you are able to get the results you need when you are searching and inputting. 
 > 3. Security: Obfuscating information is a handy result. 
 
 4. Which of the above hash functions would you choose to implement the requirements of the task? Why?
@@ -95,7 +93,11 @@ def sha256_hash(key: str, size: int) -> int:
 
 5. In your own words, explain each line in the pearson hash function above in terms of the criteria you listed in question 2.
 
-> Import random, creating a consistent randomized number from 42. Create a table to and shuffle it to provide randomness and security, this also increases it's sensitivity. Lastly create the key by looping through each character to provide a given consistent key based on the random values.
+> Import random, set the seed generation to 42, which will create replicatable randomisation every time. This will fall under Determinism. 
+> 
+>Create a list of 256 numbers and shuffle it (which will be replicatable thanks to random.seed). Randomness will help with security. 256 is important for all ASCII inputs. 
+> 
+> For the Pearson method, pass in a key and the size of the hash table. For every key in the string assign it to a random ASCII number
 
 6. Write pseudocode of how you would store Players in PlayerLists in a hash map.
 
