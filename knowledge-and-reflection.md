@@ -114,7 +114,7 @@ def sha256_hash(key: str, size: int) -> int:
 
 2. If you didn't have to use a PlayerList, how would you have changed them implementation of the hash map and why?
 
-> I would key it to a spot. If it was blocked then I would iterate until I found an available slot. Drawback with this version is the bigger and more filled the hash map gets the worse the performance will be, this also doesn't take into account if players would be removed.
+> Use a dictionary
 
 ## Reference
 
