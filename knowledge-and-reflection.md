@@ -97,7 +97,7 @@ def sha256_hash(key: str, size: int) -> int:
 > 
 >Create a list of 256 numbers and shuffle it (which will be replicatable thanks to random.seed). Randomness will help with security. 256 is important for all ASCII inputs. 
 > 
-> For the Pearson method, pass in a key and the size of the hash table. For every key in the string assign it to a random ASCII number
+> For the Pearson method, pass in a key and the size of the hash table. For every key in the string assign it to a one of the randomised ASCII number
 
 6. Write pseudocode of how you would store Players in PlayerLists in a hash map.
 
@@ -105,6 +105,8 @@ def sha256_hash(key: str, size: int) -> int:
 > 2. Each hash map should be a playerlist.
 > 3. Create a player, hashing a key.
 > 4. Insert the player into the hash map based on it's key location.
+> 5. If there is no player in the list, it becomes the first one (e.g. root or in my code's case front)
+> 6. If a player already is in the map then push it to the end of the map
 
 ## Reflection
 
