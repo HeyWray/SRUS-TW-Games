@@ -93,6 +93,7 @@ def sha256_hash(key: str, size: int) -> int:
 
 5. In your own words, explain each line in the pearson hash function above in terms of the criteria you listed in question 2.
 
+_**[Q5 Still missing key points: what is the XOR for? Why mod size at the end?]**_
 > Import random, set the seed generation to 42, which will create replicatable randomisation every time. This will fall under Determinism. 
 > 
 >Create a list of 256 numbers and shuffle it (which will be replicatable thanks to random.seed). Randomness will help with security. 256 is important for all ASCII inputs. 

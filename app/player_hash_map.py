@@ -21,7 +21,7 @@ class PlayerHashMap():
         """Add a new player to PlayerList in a
             corresponding index in the hash map.
             """
-        player_list = self.hash_map[self.get_index(uid)]
+        player_list = self.hash_map[self._get_index(uid)]
         player_list.push_to_end(PlayerNode(Player(uid, name)))
 
 
@@ -29,7 +29,7 @@ class PlayerHashMap():
         """Retrieve a player from the PlayerList with
             the corresponding uid in the hash map.
             """
-        player = self.hash_map[self.get_index(uid)].get_player_by_uid(uid)
+        player = self.hash_map[self._get_index(uid)].get_player_by_uid(uid)
         if player is None:
             raise ValueError(f"Cannot get player {uid}")
         return player
@@ -39,7 +39,7 @@ class PlayerHashMap():
         """Remove a player from the PlayerList with
             the corresponding index in the hash map.
             """
-        player_list = self.hash_map[self.get_index(uid)]
+        player_list = self.hash_map[self._get_index(uid)]
         if player_list is None:
             raise Exception(f"Trying to delete player {uid} that doesn't exist")
         player_list.remove_player_by_uid(uid)
@@ -62,6 +62,6 @@ class PlayerHashMap():
             display_message += "\n\n"
         return display_message
 
-    def get_index(self, uid) -> int:
+    def _get_index(self, uid) -> int:
         """Finds the location of a player by given uid"""
-        return Player.hash_of_uid(uid)
+        return Player.hash_method(uid) % self.HASH_SIZE
